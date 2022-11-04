@@ -1,0 +1,162 @@
+@use "variables" as *;
+
+// media query mixins for device screen size
+@mixin tablet {
+  @media screen and (min-width: $tablet-breakpoint) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media screen and (min-width: $desktop-breakpoint) {
+    @content;
+  }
+}
+
+@mixin desktop-width {
+  width: 102rem;
+  margin: 0 auto;
+}
+
+// Mobile
+@mixin page_header_mobile {
+  font-size: 2.8rem;
+  line-height: 3.6rem;
+  font-weight: 600;
+}
+
+@mixin subheader_mobile {
+  font-size: 2rem;
+  line-height: 2.8rem;
+  font-weight: 600;
+}
+
+@mixin labels_links_buttons_mobile {
+  font-size: 1.3rem;
+  line-height: 2rem;
+  font-weight: 600;
+}
+
+@mixin table_header_mobile {
+  font-size: 1.1rem;
+  line-height: 1.6rem;
+  font-weight: 400;
+}
+
+@mixin body_large_mobile {
+  font-size: 1.5rem;
+  line-height: 2.6rem;
+  font-weight: 400;
+}
+
+@mixin body_medium_mobile {
+  font-size: 1.3rem;
+  line-height: 2rem;
+  font-weight: 400;
+}
+@mixin body_small_mobile {
+  font-size: 1.1rem;
+  line-height: 1.6rem;
+  font-weight: 400;
+}
+
+// Desktop & Tablet - dt = desktop & tablet
+
+@mixin page_header_dt {
+  font-size: 3.2rem;
+  line-height: 4rem;
+  font-weight: 600;
+}
+
+@mixin subheader_dt {
+  font-size: 2.4rem;
+  line-height: 3.2rem;
+  font-weight: 600;
+}
+
+@mixin labels_links_buttons_dt {
+  font-size: 1.4rem;
+  line-height: 2.2rem;
+  font-weight: 600;
+}
+
+@mixin table_header_dt {
+  font-size: 1.2rem;
+  line-height: 1.8rem;
+  font-weight: 400;
+}
+
+@mixin body_large_dt {
+  font-size: 1.6rem;
+  line-height: 2.8rem;
+  font-weight: 400;
+}
+
+@mixin body_medium_dt {
+  font-size: 1.4rem;
+  line-height: 2.2rem;
+  font-weight: 400;
+}
+
+@mixin body_small_dt {
+  font-size: 1.2rem;
+  line-height: 1.8rem;
+  font-weight: 400;
+}
+
+// paddings
+
+@mixin padding_between_mobile {
+  padding: 0 2.4rem;
+}
+
+// out of stock and in stock styling
+@mixin in-stock {
+  width: auto;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0.4rem 0.8rem;
+  background: rgba(21, 132, 99, 0.07);
+  border-radius: 2rem;
+  text-transform: uppercase;
+  color: $green;
+}
+@mixin no-stock {
+  width: auto;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0.4rem 0.8rem;
+  background: rgba(201, 69, 21, 0.07);
+  border-radius: 2rem;
+  text-transform: uppercase;
+  color: $red;
+}
+
+@mixin in-stock-mobile {
+  @include in-stock;
+  font-weight: 600;
+  font-size: 11px;
+  line-height: 16px;
+}
+
+@mixin in-stock-tablet {
+  @include in-stock;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 18px;
+}
+@mixin no-stock-mobile {
+  @include no-stock;
+  font-weight: 600;
+  font-size: 11px;
+  line-height: 16px;
+}
+
+@mixin no-stock-tablet {
+  @include no-stock;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 18px;
+}

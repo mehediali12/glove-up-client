@@ -1,6 +1,8 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 // import { useState, useEffect } from "react";
 import "./App.scss";
+import AddFighterPage from "./pages/AddFighterPage/AddFighterPage";
+import EditPage from "./pages/EditPage/EditPage";
 import ProfilePage from "./pages/ProfilePage/ProfilePage";
 
 function App() {
@@ -9,9 +11,8 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<ProfilePage />} />
-          {/* <Route path="/commute" element={<CommutePage />} />
-          <Route path="/route" element={<RoutePage />} />
-          <Route path="/complete" element={<CompletePage />} /> */}
+          <Route path="/edit" element={<EditPage />} />
+          <Route path="/add" element={<AddFighterPage />} />
         </Routes>
       </BrowserRouter>
     </>

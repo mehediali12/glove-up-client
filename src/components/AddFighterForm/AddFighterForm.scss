@@ -1,0 +1,68 @@
+@use "../../styles/partials/variables" as *;
+
+.edit-form {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  //   align-items: center;
+  margin-bottom: 4rem;
+
+  &__upload {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 2rem;
+    // background-color: tan;
+    // width: fit-content;
+  }
+
+  &__img {
+    height: 9rem;
+    width: 17rem;
+    background-color: #d9d9d9;
+    border-radius: 5px;
+  }
+
+  &__choose {
+    // background-color: red;
+    margin-top: 1rem;
+    width: 18rem;
+  }
+
+  &__upload-btn {
+    margin-top: 1.5rem;
+    background-color: $darkGrey;
+    padding: 1rem 2rem;
+    width: 17rem;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-family: inherit;
+    font-size: 1.4rem;
+  }
+
+  &__label {
+    //   @include labels_links_buttons_mobile;
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+  }
+
+  &__save-container {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: center;
+  }
+
+  &__save-btn {
+    background-color: $darkGrey;
+    padding: 1rem 2rem;
+    width: 17rem;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-family: inherit;
+    font-size: 1.4rem;
+  }
+}

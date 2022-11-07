@@ -1,8 +1,11 @@
 import SearchIcon from "../../assets/icons/search.svg";
 import ProfileIcon from "../../assets/icons/profile.svg";
 import "./Navbar.scss";
+import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
+  const navigate = useNavigate();
+
   return (
     <div className="navbar">
       <div className="navbar__search">
@@ -18,6 +21,9 @@ const Navbar = () => {
           className="navbar__profile-icon"
           src={ProfileIcon}
           alt="profile icon"
+          onClick={() => {
+            navigate("/");
+          }}
         />
       </div>
     </div>

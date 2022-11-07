@@ -1,0 +1,41 @@
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/mixins" as *;
+
+.input__container {
+  margin-bottom: 1.6rem;
+
+  @include tablet {
+    margin-bottom: 2.4rem;
+  }
+}
+
+.input__sub-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.label {
+  //   @include labels_links_buttons_mobile;
+  font-size: 1.4rem;
+  margin-bottom: 0.4rem;
+}
+
+.input {
+  height: 3.6rem;
+  outline: none;
+  border: 1px solid #cdcdcd;
+  border-radius: 5px;
+  padding: 0 1.6rem;
+
+  //   &--invalid {
+  //     // border: 1px solid red;
+  //   }
+}
+
+.invalid {
+  @include labels_links_buttons_mobile;
+  color: red;
+  display: flex;
+  align-items: center;
+  margin-top: 0.4rem;
+}

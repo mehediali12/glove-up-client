@@ -3,14 +3,21 @@ import AddIcon from "../../assets/icons/add.svg";
 import fighter1 from "../../assets/images/fighter-1.jpg";
 import Modal from "../Modal/Modal";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const ProfileFighters = () => {
   const [openModal, setOpenModal] = useState(false);
+  const navigate = useNavigate();
 
   return (
     <main className="p-fighters">
       <div className="add-fighter">
-        <button className="add-fighter__btn">
+        <button
+          onClick={() => {
+            navigate("/add");
+          }}
+          className="add-fighter__btn"
+        >
           <img
             src={AddIcon}
             alt="add fighter"

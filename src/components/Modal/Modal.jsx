@@ -1,9 +1,12 @@
 import "./Modal.scss";
 import CloseBtn from "../../assets/icons/close.svg";
 import fighter1 from "../../assets/images/fighter-1.jpg";
-import { useState } from "react";
+// import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Modal = ({ closeModal }) => {
+  const navigate = useNavigate();
+
   return (
     <div className="modal">
       <div className="modal__container">
@@ -38,7 +41,14 @@ const Modal = ({ closeModal }) => {
           </div>
 
           <div className="modal__buttons">
-            <button className="modal__edit">Edit</button>
+            <button
+              onClick={() => {
+                navigate("/edit");
+              }}
+              className="modal__edit"
+            >
+              Edit
+            </button>
             <button className="modal__delete">Delete</button>
           </div>
         </div>

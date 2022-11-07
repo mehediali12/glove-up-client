@@ -1,8 +1,12 @@
 import "./ProfileFighters.scss";
 import AddIcon from "../../assets/icons/add.svg";
 import fighter1 from "../../assets/images/fighter-1.jpg";
+import Modal from "../Modal/Modal";
+import { useState } from "react";
 
 const ProfileFighters = () => {
+  const [openModal, setOpenModal] = useState(false);
+
   return (
     <main className="p-fighters">
       <div className="add-fighter">
@@ -16,7 +20,12 @@ const ProfileFighters = () => {
         </button>
       </div>
 
-      <article className="fighter">
+      <article
+        className="fighter"
+        onClick={() => {
+          setOpenModal(true);
+        }}
+      >
         <div className="fighter__img-container">
           <img
             className="fighter__img"
@@ -32,14 +41,8 @@ const ProfileFighters = () => {
           <p className="fighter__gender">GENDER: Male</p>
           <p className="fighter__fight-style">FIGHT STYLE: Muay Thai, BJJ</p>
         </div>
-
-        {/* <div className="fighter__record">
-          <p>W/L</p>
-          <p className="fighter__win">5</p>
-          <p className="fighter__loss">1</p>
-          <p className="fighter__draw">0</p>
-        </div> */}
       </article>
+      {openModal && <Modal closeModal={setOpenModal} />}
     </main>
   );
 };

@@ -69,7 +69,7 @@ const AddFighterForm = () => {
           }}
           className="edit-form__save-btn"
         >
-          Save
+          Submit
         </button>
       </div>
     </div>

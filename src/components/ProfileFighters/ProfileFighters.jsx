@@ -5,9 +5,11 @@ import Modal from "../Modal/Modal";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const ProfileFighters = () => {
+const ProfileFighters = (props) => {
   const [openModal, setOpenModal] = useState(false);
   const navigate = useNavigate();
+
+  const testArray = ["hi", "hello", "hey"];
 
   return (
     <main className="p-fighters">
@@ -27,28 +29,48 @@ const ProfileFighters = () => {
         </button>
       </div>
 
-      <article
-        className="fighter"
-        onClick={() => {
-          setOpenModal(true);
-        }}
-      >
-        <div className="fighter__img-container">
-          <img
-            className="fighter__img"
-            src={fighter1}
-            alt="fighter__fighter-1"
-          />
-        </div>
-        <div className="fighter__info">
-          <p className="fighter__name">NAME: John Smith</p>
-          <p className="fighter__age">AGE: 25</p>
-          <p className="fighter__weight">WEIGHT: 80kg</p>
-          <p className="fighter__height">HEIGHT: 178cm</p>
-          <p className="fighter__gender">GENDER: Male</p>
-          <p className="fighter__fight-style">FIGHT STYLE: Muay Thai, BJJ</p>
-        </div>
-      </article>
+      {props.fightersList
+        .filter((fighter) => fighter.gymName === "fightzone")
+        .map((fighter) => {
+          return (
+            <article
+              className="fighter"
+              onClick={() => {
+                setOpenModal(true);
+              }}
+            >
+              <div className="fighter__img-container">
+                <img
+                  className="fighter__img"
+                  src={`${fighter.image}`}
+                  alt="fighter__fighter-1"
+                />
+              </div>
+              <div className="fighter__info">
+                <p className="fighter__name">NAME: {fighter.name}</p>
+                <p className="fighter__age">AGE: {fighter.age}</p>
+                <p className="fighter__weight">WEIGHT: {fighter.weight}</p>
+                <p className="fighter__height">HEIGHT: {fighter.height}</p>
+                <p className="fighter__gender">GENDER: {fighter.gender}</p>
+                <p className="fighter__fight-style">
+                  FIGHT STYLE:{" "}
+                  {fighter.fightStyle.map((style) => {
+                    return <span>{style} </span>;
+                  })}
+                </p>
+                {/* FIGHT STYLE:{" "}
+                {fighter.fightStyle.map((style) => (
+                  <p>{fighter.fightStyle}</p>
+                ))}
+              </p>
+
+              {fighter.fightStyle.map((style) => (
+                <p>hi </p>
+              ))} */}
+              </div>
+            </article>
+          );
+        })}
       {openModal && <Modal closeModal={setOpenModal} />}
     </main>
   );

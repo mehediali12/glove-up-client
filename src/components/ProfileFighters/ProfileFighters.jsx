@@ -1,6 +1,6 @@
 import "./ProfileFighters.scss";
 import AddIcon from "../../assets/icons/add.svg";
-import fighter1 from "../../assets/images/fighter-1.jpg";
+// import fighter1 from "../../assets/images/fighter-1.jpg";
 import Modal from "../Modal/Modal";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -8,8 +8,6 @@ import { useNavigate } from "react-router-dom";
 const ProfileFighters = (props) => {
   const [openModal, setOpenModal] = useState(false);
   const navigate = useNavigate();
-
-  const testArray = ["hi", "hello", "hey"];
 
   return (
     <main className="p-fighters">
@@ -71,7 +69,9 @@ const ProfileFighters = (props) => {
             </article>
           );
         })}
-      {openModal && <Modal closeModal={setOpenModal} />}
+      {openModal && (
+        <Modal closeModal={setOpenModal} fightersList={props.fightersList} />
+      )}
     </main>
   );
 };

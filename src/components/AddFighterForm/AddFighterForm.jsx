@@ -3,12 +3,62 @@ import "./AddFighterForm.scss";
 import Select from "react-select";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { postToFighters } from "../../utils/api";
 
-const AddFighterForm = () => {
+const AddFighterForm = ({ fightersList }) => {
   const [selectedOption, setSelectedOption] = useState(null);
+  const [gymName, setGymName] = useState("");
+  const [name, setName] = useState("");
+  const [age, setAge] = useState("");
+  const [weight, setWeight] = useState("");
+  const [height, setHeight] = useState("");
+  const [gender, setGender] = useState("");
+  const [fightStyle, setFightStyle] = useState("");
+  const [win, setWin] = useState("");
+  const [loss, setLoss] = useState("");
+  const [draw, setDraw] = useState("");
+
   const navigate = useNavigate();
 
-  const options = [
+  const handleChangeGymName = (event) => {
+    setGymName(event.target.value);
+  };
+  const handleChangeName = (event) => {
+    setName(event.target.value);
+  };
+  const handleChangeAge = (event) => {
+    setAge(event.target.value);
+  };
+  const handleChangeWeight = (event) => {
+    setWeight(event.target.value);
+  };
+  const handleChangeHeight = (event) => {
+    setHeight(event.target.value);
+  };
+  const handleChangeGender = (event) => {
+    setGender(event.target.value);
+  };
+  const handleChangeFightStyle = (event) => {
+    setFightStyle(event.target.value);
+  };
+  const handleChangeSetWin = (event) => {
+    setWin(event.target.value);
+  };
+  const handleChangeSetLoss = (event) => {
+    setLoss(event.target.value);
+  };
+  const handleChangeSetDraw = (event) => {
+    setDraw(event.target.value);
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    postToFighters(fightersList);
+    navigate("/");
+  };
+
+  const genderOptions = [
     { value: "Male", label: "Male" },
     { value: "Female", label: "Female" },
   ];
@@ -35,7 +85,8 @@ const AddFighterForm = () => {
         <button className="edit-form__upload-btn">Upload Image</button>
       </div>
 
-      <form className="edit-form__form">
+      <form className="edit-form__form" onSubmit={handleSubmit}>
+        <Input label="Gym Name" />
         <Input label="Name" />
         <Input label="Age" type="number" />
         <Input label="Weight (kg)" type="number" />
@@ -45,7 +96,7 @@ const AddFighterForm = () => {
         <Select
           defaultValue={selectedOption}
           onChange={setSelectedOption}
-          options={options}
+          options={genderOptions}
         />
         <br />
         <label className="edit-form__label">Fight Style</label>

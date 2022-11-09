@@ -1,0 +1,53 @@
+@use "../../styles/partials/variables" as *;
+
+.search {
+  margin-top: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &__bar {
+    height: 4rem;
+    width: 25rem;
+    border: 1px solid $lightGrey;
+    border-radius: 5px 0 0 5px;
+    padding: 0 2rem;
+    font-family: inherit;
+    font-size: 1.6rem;
+    outline: none;
+
+    &:focus {
+      border: 2px solid black;
+    }
+
+    &::placeholder {
+      font-family: inherit;
+      font-size: 1.6rem;
+      font-weight: 500;
+    }
+  }
+
+  &__btn {
+    // margin-top: 1rem;
+    // display: flex;
+    // justify-content: space-evenly;
+    // align-items: center;
+    background-color: $darkGrey;
+    // color: #fff;
+    height: 4rem;
+    width: 6rem;
+    border: none;
+    border-radius: 0 5px 5px 0;
+    //   font-family: inherit;
+    // font-size: 1.4rem;
+    cursor: pointer;
+
+    &:hover {
+      scale: 0.97;
+    }
+  }
+
+  &__icon {
+    width: 2.6rem;
+  }
+}

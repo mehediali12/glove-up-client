@@ -1,35 +1,15 @@
 @use "../../styles/partials/variables" as *;
 
-.p-fighters {
+.gyms {
   padding: 0 2rem;
   margin-bottom: 8rem;
 }
 
-.add-fighter {
-  display: flex;
-  justify-content: center;
-  margin: 2rem 0;
-  &__btn {
-    display: flex;
-    align-items: center;
-    border: none;
-    font-family: inherit;
-    background: none;
-    font-size: 1.5rem;
-    cursor: pointer;
-
-    &:hover {
-      scale: 0.97;
-    }
-  }
-
-  &__add-icon {
-    height: 3.2rem;
-    margin-right: 0.3rem;
-  }
+.gym-link {
+  text-decoration: none;
 }
 
-.fighter {
+.gym {
   display: flex;
   background-color: $silver;
   border-radius: 5px;

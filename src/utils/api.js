@@ -31,3 +31,11 @@ export const editFighter = async (data, getFighter, id) => {
     console.log(error);
   }
 };
+
+export const getGymsList = async () => {
+  return await axios.get(`${apiRoot}/gyms`);
+};
+
+export const getSingleGym = async (id) => {
+  return await axios.get(`${apiRoot}/gyms/${id}`);
+};

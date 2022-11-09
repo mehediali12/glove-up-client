@@ -13,6 +13,9 @@ const Navbar = () => {
           className="navbar__search-icon"
           src={SearchIcon}
           alt="search icon"
+          onClick={() => {
+            navigate("/search");
+          }}
         />
       </div>
       <div className="navbar__divider"></div>

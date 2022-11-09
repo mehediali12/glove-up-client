@@ -2,8 +2,32 @@ import fznLogo from "../../assets/images/fzn.jpg";
 import "./ProfileHeader.scss";
 import Settings from "../../assets/icons/settings.svg";
 import Message from "../../assets/icons/message.svg";
+import { getGymsList } from "../../utils/api";
+import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 
 const ProfileHeader = () => {
+  const [gymsList, setGymsList] = useState(null);
+
+  const params = useParams();
+
+  const getGymsItems = async () => {
+    try {
+      const { data } = await getGymsList();
+      setGymsList(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getGymsItems();
+  }, []);
+
+  if (!gymsList) {
+    return <h1>Cannot find gym...</h1>;
+  }
+
   return (
     <div className="p-header">
       <div className="p-header__info">

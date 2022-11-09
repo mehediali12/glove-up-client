@@ -3,58 +3,67 @@ import "./AddFighterForm.scss";
 import Select from "react-select";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { postToFighters } from "../../utils/api";
+import { postToFighters, uploadImage } from "../../utils/api";
 
-const AddFighterForm = ({ fightersList }) => {
+const AddFighterForm = ({ setFightersUpdated }) => {
   const [selectedOption, setSelectedOption] = useState(null);
-  const [gymName, setGymName] = useState("");
-  const [name, setName] = useState("");
-  const [age, setAge] = useState("");
-  const [weight, setWeight] = useState("");
-  const [height, setHeight] = useState("");
-  const [gender, setGender] = useState("");
-  const [fightStyle, setFightStyle] = useState("");
-  const [win, setWin] = useState("");
-  const [loss, setLoss] = useState("");
-  const [draw, setDraw] = useState("");
+  const [formData, setFormData] = useState({});
+  // const [image, setImage] = useState({});
 
   const navigate = useNavigate();
 
-  const handleChangeGymName = (event) => {
-    setGymName(event.target.value);
+  const numberInputs = ["weight", "age", "height", "win", "loss", "draw"];
+
+  const inputChangeHandler = (e) => {
+    let value;
+
+    if (numberInputs.includes(e.target.name)) {
+      // Convert to number
+      value = +e.target.value;
+    } else {
+      value = e.target.value;
+    }
+
+    setFormData({
+      ...formData,
+      [e.target.name]: value,
+    });
   };
-  const handleChangeName = (event) => {
-    setName(event.target.value);
+
+  const fightStyleChangeHandler = (e) => {
+    const values = e.map((selectedValue) => selectedValue.value);
+
+    setFormData({
+      ...formData,
+      fightStyle: values,
+    });
   };
-  const handleChangeAge = (event) => {
-    setAge(event.target.value);
+
+  const genderChangeHandler = (e) => {
+    setFormData({
+      ...formData,
+      gender: e.value,
+    });
   };
-  const handleChangeWeight = (event) => {
-    setWeight(event.target.value);
-  };
-  const handleChangeHeight = (event) => {
-    setHeight(event.target.value);
-  };
-  const handleChangeGender = (event) => {
-    setGender(event.target.value);
-  };
-  const handleChangeFightStyle = (event) => {
-    setFightStyle(event.target.value);
-  };
-  const handleChangeSetWin = (event) => {
-    setWin(event.target.value);
-  };
-  const handleChangeSetLoss = (event) => {
-    setLoss(event.target.value);
-  };
-  const handleChangeSetDraw = (event) => {
-    setDraw(event.target.value);
+
+  const imageChangeHandler = (e) => {
+    setFormData({
+      ...formData,
+      image: e.target.files[0],
+    });
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    postToFighters(fightersList);
+    const result = await uploadImage(formData.image);
+    const imagePath = result.data.imageUrl;
+    formData.image = imagePath;
+
+    postToFighters(formData);
+
+    setFightersUpdated(true);
+
     navigate("/");
   };
 
@@ -75,54 +84,91 @@ const AddFighterForm = ({ fightersList }) => {
   return (
     <div className="edit-form">
       <div className="edit-form__upload">
-        <div className="edit-form__img"></div>
+        <div className="edit-form__img">Upload an image</div>
         <input
+          onChange={(e) => {
+            imageChangeHandler(e);
+          }}
           className="edit-form__choose"
           type="file"
           name="edit-form-image"
           id="edit-form-image"
         />
-        <button className="edit-form__upload-btn">Upload Image</button>
+        {/* <button className="edit-form__upload-btn">Upload Image</button> */}
       </div>
 
       <form className="edit-form__form" onSubmit={handleSubmit}>
-        <Input label="Gym Name" />
-        <Input label="Name" />
-        <Input label="Age" type="number" />
-        <Input label="Weight (kg)" type="number" />
-        <Input label="Height (cm)" type="number" />
+        <Input
+          name="gymName"
+          inputChangeHandler={inputChangeHandler}
+          label="Gym Name"
+        />
+        <Input
+          name="name"
+          inputChangeHandler={inputChangeHandler}
+          label="Name"
+        />
+        <Input
+          name="age"
+          inputChangeHandler={inputChangeHandler}
+          label="Age"
+          type="number"
+        />
+        <Input
+          name="weight"
+          inputChangeHandler={inputChangeHandler}
+          label="Weight (kg)"
+          type="number"
+        />
+        <Input
+          name="height"
+          inputChangeHandler={inputChangeHandler}
+          label="Height (cm)"
+          type="number"
+        />
 
         <label className="edit-form__label">Gender</label>
         <Select
+          name="gender"
+          // inputChangeHandler={inputChangeHandler}
           defaultValue={selectedOption}
-          onChange={setSelectedOption}
+          onChange={genderChangeHandler}
           options={genderOptions}
         />
         <br />
         <label className="edit-form__label">Fight Style</label>
         <Select
+          // inputChangeHandler={inputChangeHandler}
           isMulti
-          name="fight-styles"
+          name="fightStyles"
           options={fightStyles}
+          onChange={fightStyleChangeHandler}
           className="edit-form__fight-styles"
           classNamePrefix="select"
         />
         <br />
-        <Input label="Win" type="number" />
-        <Input label="Loss" type="number" />
-        <Input label="Draw" type="number" />
+        <Input
+          name="win"
+          inputChangeHandler={inputChangeHandler}
+          label="Win"
+          type="number"
+        />
+        <Input
+          name="loss"
+          inputChangeHandler={inputChangeHandler}
+          label="Loss"
+          type="number"
+        />
+        <Input
+          name="draw"
+          inputChangeHandler={inputChangeHandler}
+          label="Draw"
+          type="number"
+        />
+        <div className="edit-form__save-container">
+          <button className="edit-form__save-btn">Submit</button>
+        </div>
       </form>
-
-      <div className="edit-form__save-container">
-        <button
-          onClick={() => {
-            navigate("/");
-          }}
-          className="edit-form__save-btn"
-        >
-          Submit
-        </button>
-      </div>
     </div>
   );
 };

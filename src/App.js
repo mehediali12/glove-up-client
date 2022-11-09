@@ -4,7 +4,6 @@ import "./App.scss";
 import AddFighterPage from "./pages/AddFighterPage/AddFighterPage";
 import EditPage from "./pages/EditPage/EditPage";
 import ProfilePage from "./pages/ProfilePage/ProfilePage";
-// import axios from "axios";
 import { getFightersList } from "./utils/api";
 import SearchPage from "./pages/SearchPage/SearchPage";
 import Shootfighters from "./pages/Shootfighters/Shootfighters";
@@ -12,6 +11,7 @@ import FightFactory from "./pages/FightFactory/FightFactory";
 
 function App() {
   const [fightersList, setFightersList] = useState(null);
+  const [fightersUpdated, setFightersUpdated] = useState(false);
 
   const getFightersItems = async () => {
     try {
@@ -24,7 +24,8 @@ function App() {
 
   useEffect(() => {
     getFightersItems();
-  }, []);
+    setFightersUpdated(false);
+  }, [fightersUpdated]);
 
   if (!fightersList) {
     return <h1>Cannot find...</h1>;
@@ -44,7 +45,12 @@ function App() {
           <Route path="/fightfactory" element={<FightFactory />} />
           <Route
             path="/add"
-            element={<AddFighterPage fightersList={fightersList} />}
+            element={
+              <AddFighterPage
+                fightersList={fightersList}
+                setFightersUpdated={setFightersUpdated}
+              />
+            }
           />
         </Routes>
       </BrowserRouter>

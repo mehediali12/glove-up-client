@@ -32,6 +32,7 @@ const ProfileFighters = (props) => {
         .map((fighter) => {
           return (
             <article
+              key={fighter.id}
               className="fighter"
               onClick={() => {
                 setOpenModal(true);
@@ -41,7 +42,7 @@ const ProfileFighters = (props) => {
                 <img
                   className="fighter__img"
                   src={`${fighter.image}`}
-                  alt="fighter__fighter-1"
+                  alt={`Picture of ${fighter.name}`}
                 />
               </div>
               <div className="fighter__info">
@@ -52,8 +53,8 @@ const ProfileFighters = (props) => {
                 <p className="fighter__gender">GENDER: {fighter.gender}</p>
                 <p className="fighter__fight-style">
                   FIGHT STYLE:{" "}
-                  {fighter.fightStyle.map((style) => {
-                    return <span>{style} </span>;
+                  {fighter.fightStyle.map((style, index) => {
+                    return <span key={index}>{style} </span>;
                   })}
                 </p>
                 {/* FIGHT STYLE:{" "}

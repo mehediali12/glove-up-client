@@ -19,31 +19,25 @@ const Modal = ({ closeModal, fightersList }) => {
             />
           </button>
 
-          <img
-            src={`${fightersList.image}`}
-            alt="fighter 1"
-            className="modal__img"
-          />
+          <img src={fighter1} alt="fighter 1" className="modal__img" />
         </div>
 
         <div className="modal__info-container">
           <div className="modal__stats">
             <div className="modal__info">
-              <p className="modal__name">GYM NAME: {fightersList.gymName}</p>
-              <p className="modal__name">NAME: {fightersList.name}</p>
-              <p className="modal__age">AGE: {fightersList.age}</p>
-              <p className="modal__weight">WEIGHT: {fightersList.weight}</p>
-              <p className="modal__height">HEIGHT: {fightersList.height}</p>
-              <p className="modal__gender">GENDER: {fightersList.gender}</p>
-              <p className="modal__fight-style">
-                FIGHT STYLE: {fightersList.fightStyle}
-              </p>
+              <p className="modal__name">GYM NAME: Fightzone</p>
+              <p className="modal__name">NAME: John Smith Smith</p>
+              <p className="modal__age">AGE: 25</p>
+              <p className="modal__weight">WEIGHT: 80kg</p>
+              <p className="modal__height">HEIGHT: 178cm</p>
+              <p className="modal__gender">GENDER: Male</p>
+              <p className="modal__fight-style">FIGHT STYLE: Muay Thai, BJJ</p>
             </div>
             <div className="modal__record">
               <p className="modal__record-title">RECORD:</p>
-              <p className="modal__win">WIN: {fightersList.win}</p>
-              <p className="modal__loss">LOSS: {fightersList.loss}</p>
-              <p className="modal__draw">DRAW: {fightersList.draw}</p>
+              <p className="modal__win">WIN: 16</p>
+              <p className="modal__loss">LOSS: 2</p>
+              <p className="modal__draw">DRAW: 0</p>
             </div>
           </div>
 

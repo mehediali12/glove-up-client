@@ -14,10 +14,24 @@ export const deleteFighter = async (fighter) => {
   return await axios.delete(`${apiRoot}/fighters/${fighter.id}`);
 };
 
-export const postToFighters = async (body, getFighters) => {
+export const postToFighters = async (body) => {
   try {
     await axios.post(`${apiRoot}/fighters`, body);
-    getFighters();
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const uploadImage = async (image) => {
+  try {
+    const formData = new FormData();
+    formData.append("file", image);
+
+    const result = await axios.post(`${apiRoot}/fighters/upload`, formData);
+
+    console.log(result);
+
+    return result;
   } catch (error) {
     console.log(error);
   }

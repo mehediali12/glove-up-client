@@ -9,6 +9,7 @@ const Input = ({
   type,
   valid,
   min,
+  inputChangeHandler,
   phoneValid,
   emailValid,
 }) => {
@@ -27,7 +28,7 @@ const Input = ({
           className={valid ? "input" : "input input--invalid"}
           type={type ? type : "text"}
           onChange={(event) => {
-            setNewValue(event.target.value);
+            inputChangeHandler(event);
           }}
         />
       </div>

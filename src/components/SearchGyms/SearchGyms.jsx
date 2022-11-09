@@ -29,7 +29,7 @@ const SearchGyms = () => {
         .filter((gym) => gym.gymName !== "Fightzone")
         .map((gym) => {
           return (
-            <Link className="gym-link" to={`/${gym.username}`}>
+            <Link key={gym.id} className="gym-link" to={`/${gym.username}`}>
               <article className="gym">
                 <div className="gym__img-container">
                   <img
